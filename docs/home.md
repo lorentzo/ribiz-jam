@@ -6,3 +6,12 @@
 * Godot tools: https://github.com/orgs/godotengine/repositories
 * Godot assets: https://godotengine.org/asset-library/asset?godot_version=3.5
 
+## Art resources
+* Tilesets: https://itch.io/game-assets/free/tag-tileset
+* Godot tilemap: https://docs.godotengine.org/en/3.5/tutorials/2d/using_tilemaps.html
+
+## Music resources
+* DAW: https://lmms.io/
+* DAW: https://www.bespokesynth.com/
+* GeneralUser SoundFont: https://schristiancollins.com/generaluser.php
+* ZynAddSubFX VST: https://zynaddsubfx.sourceforge.io/download.html
