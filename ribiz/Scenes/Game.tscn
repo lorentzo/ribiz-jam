@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://SpriteFrames/Player.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Textures/LightRadius.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Lamp.png" type="Texture" id=4]
 
 [node name="Scene" type="Node2D"]
 
@@ -15,10 +16,16 @@ frame = 1
 playing = true
 script = ExtResource( 2 )
 
-[node name="LampLight" type="Light2D" parent="."]
-position = Vector2( 222, 478 )
+[node name="LampSprite" type="Sprite" parent="Player"]
+position = Vector2( 9, 9.663 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 4 )
+
+[node name="LampLight" type="Light2D" parent="Player/LampSprite"]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 mode = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2( 283, 506 )
 color = Color( 0.00392157, 0, 0.145098, 1 )
