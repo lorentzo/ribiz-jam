@@ -1,14 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://SpriteFrames/Player.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Textures/LightRadius.png" type="Texture" id=3]
 
-[node name="Node2D" type="Node2D"]
+[node name="Scene" type="Node2D"]
 
 [node name="Player" type="AnimatedSprite" parent="."]
 position = Vector2( 158, 576 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 2 )
+
+[node name="LampLight" type="Light2D" parent="."]
+position = Vector2( 222, 478 )
+texture = ExtResource( 3 )
+mode = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.00392157, 0, 0.145098, 1 )
