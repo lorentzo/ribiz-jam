@@ -12,4 +12,5 @@ When creating new `tilemap` object with textures in this folder perform followin
     * `Mode` to `Isometric`
     * `Tile Set` load `Tilemap.tres`
     * `Cell -> Size` to x: 256, y:180
-3. Start creating `tilemap` in editor.
+3. Set `Y Sort` to `On`.
+4. Start creating `tilemap` in editor.

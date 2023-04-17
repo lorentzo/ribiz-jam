@@ -32,5 +32,5 @@ func _physics_process(delta):
 	else: 
 		player_animated_sprite.play("idle")
 
-	move_and_collide(velocity * delta)
+	move_and_slide(velocity)
 	

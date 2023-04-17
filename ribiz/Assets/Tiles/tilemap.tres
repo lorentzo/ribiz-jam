@@ -5,41 +5,41 @@
 [ext_resource path="res://Assets/Tiles/Textures/tile_wall_4_corner.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Tiles/Textures/tile_wall_6_corner.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Tiles/Textures/tile_wall_2_whole.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Tiles/Textures/tile_wall_1_whole.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Tiles/Textures/tile_wall_1_whole_red.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Tiles/Textures/tile_floor_1.png" type="Texture" id=7]
 
 [sub_resource type="OccluderPolygon2D" id=7]
-polygon = PoolVector2Array( 65, 25, 189, 117, 195, 112, 69, 18 )
+polygon = PoolVector2Array( 51.1698, 31.956, 178.967, 124.066, 204.526, 106.223, 75.7647, 13.6304 )
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 49.8797, 33.0009, 75.5999, 13.7108, 205.808, 106.946, 205.004, 170.443, 180.49, 188.527, 49.8797, 97.3013, 50.2816, 94.4882 )
+points = PoolVector2Array( 49.8797, 33.0009, 75.6481, 14.3055, 205.278, 105.741, 205.856, 169.398, 180.49, 188.527, 49.8797, 97.3013, 50.2816, 94.4882 )
 
 [sub_resource type="OccluderPolygon2D" id=8]
-polygon = PoolVector2Array( 186, 20, 59, 112, 68, 117, 195, 25 )
+polygon = PoolVector2Array( 180.414, 13.1482, 52.1343, 107.188, 75.7647, 124.549, 205.008, 31.956 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 51.4873, 105.339, 178.481, 14.1127, 204.201, 31.7953, 205.004, 96.8994, 76.4037, 188.126, 51.4873, 169.237, 51.0854, 169.237 )
+points = PoolVector2Array( 50.7639, 107.477, 179.815, 15.463, 204.201, 31.7953, 205.004, 96.8994, 76.4037, 188.126, 69.2824, 183.287, 51.3426, 169.398 )
 
 [sub_resource type="OccluderPolygon2D" id=9]
-polygon = PoolVector2Array( 60, 112, 127, 70, 191, 109, 183, 116, 128, 77, 67, 116 )
+polygon = PoolVector2Array( 52.6929, 106.223, 126.96, 56.7921, 202.674, 106.946, 179.525, 125.272, 126.96, 86.4506, 76.3233, 122.62 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 50.6835, 170.443, 51.8891, 104.535, 128.648, 55.9079, 205.004, 106.946, 205.004, 170.041, 179.284, 188.126, 128.246, 152.359, 76.8055, 188.929, 76.8055, 187.724 )
 
 [sub_resource type="OccluderPolygon2D" id=10]
-polygon = PoolVector2Array( 72, 19, 142, 68, 77, 119, 67, 113, 125, 71, 63, 25 )
+polygon = PoolVector2Array( 75.7339, 13.7777, 150.59, 69.5717, 76.8056, 124.066, 52.2107, 105.741, 100.918, 69.5717, 51.2462, 31.956 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 51.4873, 105.741, 57.1136, 99.7126, 51.0854, 97.3013, 51.4873, 31.7953, 76.0018, 13.7108, 153.162, 70.3755, 153.966, 132.667, 75.5999, 187.724, 50.6835, 170.041 )
 
 [sub_resource type="OccluderPolygon2D" id=11]
-polygon = PoolVector2Array( 60, 27, 135, 79, 199, 31, 188, 23, 133, 63, 67, 22 )
+polygon = PoolVector2Array( 50.2351, 32.5599, 127.68, 86.5157, 204.335, 32.1413, 179.217, 13.7219, 127.215, 50.0025, 76.0502, 13.4894 )
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 51.0854, 32.599, 76.0018, 13.7108, 128.648, 51.4873, 178.481, 14.5145, 205.004, 34.2065, 205.406, 95.6938, 127.844, 151.153, 51.0854, 96.8994 )
 
 [sub_resource type="OccluderPolygon2D" id=12]
-polygon = PoolVector2Array( 185, 20, 114, 71, 182, 120, 192, 114, 127, 69 )
+polygon = PoolVector2Array( 102.451, 69.3708, 179.477, 123.959, 205.264, 105.875, 154.36, 69.0359, 205.356, 32.526, 179.477, 14.4475 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 100.918, 66.7586, 179.686, 13.7108, 205.004, 32.599, 205.406, 96.0957, 198.574, 100.516, 205.004, 106.544, 205.406, 169.639, 179.284, 188.126, 101.722, 134.274 )
