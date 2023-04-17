@@ -1,30 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://SpriteFrames/Player.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
-[ext_resource path="res://Textures/LightRadius.png" type="Texture" id=3]
-[ext_resource path="res://Textures/Lamp.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Tiles/TileMapTemplate.tscn" type="PackedScene" id=2]
 
 [node name="Scene" type="Node2D"]
 
-[node name="Player" type="AnimatedSprite" parent="."]
-position = Vector2( 158, 576 )
-scale = Vector2( 2, 2 )
-frames = ExtResource( 1 )
-animation = "idle"
-frame = 1
-playing = true
-script = ExtResource( 2 )
+[node name="TileMapTemplate" parent="." instance=ExtResource( 2 )]
+position = Vector2( -47, 535 )
 
-[node name="LampSprite" type="Sprite" parent="Player"]
-position = Vector2( 9, 9.663 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 4 )
-
-[node name="LampLight" type="Light2D" parent="Player/LampSprite"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
-mode = 2
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 486, 866 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 283, 506 )
