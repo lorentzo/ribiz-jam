@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Lamp.png" type="Texture" id=2]
-[ext_resource path="res://Textures/LightRadius.png" type="Texture" id=3]
-[ext_resource path="res://SpriteFrames/Player.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://Assets/Player/Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/Textures/Lamp.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player/Textures/LightRadius.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Player/SpriteFrames/Player.tres" type="SpriteFrames" id=4]
 
 [node name="Player" type="AnimatedSprite"]
 position = Vector2( 158, 576 )
