@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Player/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/Textures/Lamp.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Player/Textures/LightRadius.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Player/Textures/LightRadius3.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Player/SpriteFrames/Player.tres" type="SpriteFrames" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -18,6 +18,7 @@ position = Vector2( 0, -2 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 4 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="LampSprite" type="Sprite" parent="Player"]
@@ -29,6 +30,7 @@ texture = ExtResource( 2 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 mode = 2
+shadow_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
