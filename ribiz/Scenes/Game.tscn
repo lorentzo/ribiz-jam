@@ -6,10 +6,11 @@
 [node name="Scene" type="Node2D"]
 
 [node name="TileMapTemplate" parent="." instance=ExtResource( 2 )]
-position = Vector2( -256, 619 )
+position = Vector2( -20, 547 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 537, 704 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 283, 506 )
 color = Color( 0.00392157, 0, 0.145098, 1 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]

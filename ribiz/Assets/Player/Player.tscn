@@ -1,24 +1,34 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Player/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/Textures/Lamp.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Player/Textures/LightRadius.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Player/SpriteFrames/Player.tres" type="SpriteFrames" id=4]
 
-[node name="Player" type="AnimatedSprite"]
-position = Vector2( 158, 576 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 14.0
+height = 24.0
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+position = Vector2( 0, 4 )
+script = ExtResource( 1 )
+
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -2 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 4 )
 animation = "idle"
 playing = true
-script = ExtResource( 1 )
 
-[node name="LampSprite" type="Sprite" parent="."]
+[node name="LampSprite" type="Sprite" parent="Player"]
 position = Vector2( 9, 9.663 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 2 )
 
-[node name="LampLight" type="Light2D" parent="LampSprite"]
+[node name="LampLight" type="Light2D" parent="Player/LampSprite"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
