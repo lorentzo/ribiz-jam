@@ -58,7 +58,7 @@ func update_lamp(delta):
 	if lamp_light_size > LAMP_RADIUS_MIN:
 		lamp_light.scale.x = lamp_light_scale
 		lamp_light.scale.y = lamp_light_scale
-	lamp_light.energy = lamp_time_left / 60
+	lamp_light.energy = sqrt(lamp_time_left / 60)
 
 func update_game_over():
 	if not game_over and lamp_light.energy <= LAMP_ENERGY_GAME_OVER:
