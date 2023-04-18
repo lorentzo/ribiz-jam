@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Assets/Styles/ProgressBarFG.tres" type="StyleBox" id=1]
 [ext_resource path="res://Assets/Styles/ProgressBarBG.tres" type="StyleBox" id=2]
-[ext_resource path="res://Assets/Player/Textures/Lamp.png" type="Texture" id=3]
-[ext_resource path="res://Assets/HUD/LampHealth.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Player/Textures/Lantern.png" type="Texture" id=3]
+[ext_resource path="res://Assets/HUD/LanternHealth.gd" type="Script" id=4]
 
 [node name="LampHealthHUD" type="CanvasLayer"]
 script = ExtResource( 4 )

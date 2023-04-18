@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Lamp.png-a069b4f288e064bd39fb9114ba3e7855.stex"
+path="res://.import/Lantern.png-40826be38abd8369e8e97d22c04076b0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/Textures/Lamp.png"
-dest_files=[ "res://.import/Lamp.png-a069b4f288e064bd39fb9114ba3e7855.stex" ]
+source_file="res://Assets/Player/Textures/Lantern.png"
+dest_files=[ "res://.import/Lantern.png-40826be38abd8369e8e97d22c04076b0.stex" ]
 
 [params]
 
