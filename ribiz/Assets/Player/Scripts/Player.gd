@@ -2,21 +2,26 @@ extends KinematicBody2D
 
 const LAMP_RADIUS_MIN: float = 200.0
 const LAMP_ENERGY_GAME_OVER: float = 0.1
+const LAMP_OIL_MAX: float = 100.0
+const LAMP_OIL_PER_SECOND: float = 1.0
 
 var walking_speed: float = 100
-var running_speed: float = 3 * walking_speed
+var running_speed: float = 2 * walking_speed
 var tree: SceneTree
 var player_animated_sprite: AnimatedSprite
 var lamp_light: Light2D
-var lamp_time_left: float = 60
+var lamp_oil = LAMP_OIL_MAX
+
 var game_over: bool = false
 var game_over_hud = preload("res://Assets/HUD/GameOver.tscn").instance()
+var lamp_health_hud
 
 func _ready():
 	tree = get_tree()
 	player_animated_sprite = get_node("Player")
 	lamp_light = player_animated_sprite.get_node("LampSprite/LampLight")
-	
+	lamp_health_hud = tree.get_root().get_node("/root/Level/LampHealthHUD")
+
 func _physics_process(delta):
 	if not game_over:
 		update_player(delta)
@@ -52,13 +57,14 @@ func update_player(delta):
 	move_and_slide(velocity)
 	
 func update_lamp(delta):
-	lamp_time_left = max(lamp_time_left - delta, 0)
-	var lamp_light_scale = lamp_time_left / 60
+	lamp_oil = max(lamp_oil - LAMP_OIL_PER_SECOND * delta, 0)
+	var lamp_light_scale = lamp_oil / LAMP_OIL_MAX
 	var lamp_light_size = min(lamp_light.texture.get_width() * lamp_light.scale.x, lamp_light.texture.get_height() * lamp_light.scale.y)
 	if lamp_light_size > LAMP_RADIUS_MIN:
 		lamp_light.scale.x = lamp_light_scale
 		lamp_light.scale.y = lamp_light_scale
-	lamp_light.energy = sqrt(lamp_time_left / 60)
+	lamp_light.energy = sqrt(lamp_oil / LAMP_OIL_MAX)
+	lamp_health_hud.set_health(lamp_oil / LAMP_OIL_MAX * 100)
 
 func update_game_over():
 	if not game_over and lamp_light.energy <= LAMP_ENERGY_GAME_OVER:

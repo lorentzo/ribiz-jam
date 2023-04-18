@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Tiles/TileMapTemplate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/HUD/LampHealth.tscn" type="PackedScene" id=3]
 
 [node name="Level" type="Node2D"]
 
@@ -14,3 +15,5 @@ position = Vector2( 537, 704 )
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 283, 506 )
 color = Color( 0, 0, 0.0196078, 1 )
+
+[node name="LampHealthHUD" parent="." instance=ExtResource( 3 )]
