@@ -6,7 +6,7 @@
 [node name="Scene" type="Node2D"]
 
 [node name="TileMapTemplate" parent="." instance=ExtResource( 2 )]
-position = Vector2( -20, 547 )
+position = Vector2( -162, 509 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 537, 704 )
