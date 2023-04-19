@@ -16,3 +16,9 @@ tile_data = PoolIntArray( -524286, 3, 0, -524285, 7, 0, -524284, 7, 0, -524283, 
 
 [node name="Oil" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1276, -348 )
+
+[node name="Oil2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 383, -76 )
+
+[node name="Oil3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 512, 365 )
