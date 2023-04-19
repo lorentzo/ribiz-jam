@@ -1,4 +1,8 @@
+class_name Player
 extends KinematicBody2D
+
+signal lantern_health_changed(lantern_health)
+signal lantern_extinguished
 
 const LANTERN_RADIUS_MIN: float = 200.0
 const LANTERN_ENERGY_GAME_OVER: float = 0.1
@@ -7,29 +11,16 @@ const LANTERN_OIL_PER_SECOND: float = 1.0
 
 var walking_speed: float = 100
 var running_speed: float = 2 * walking_speed
-var tree: SceneTree
-var player_animated_sprite: AnimatedSprite
-var lantern_light: Light2D
 var lantern_oil = LANTERN_OIL_MAX
+var lantern_extinguished: bool = false
 
-var game_over: bool = false
-var game_over_hud = preload("res://Assets/HUD/GameOver.tscn").instance()
-var lantern_health_hud
-
-func _ready():
-	tree = get_tree()
-	player_animated_sprite = get_node("Player")
-	lantern_light = player_animated_sprite.get_node("LanternSprite/LanternLight")
-	lantern_health_hud = tree.get_root().get_node("/root/Level/LanternHealthHUD")
+onready var lantern_light: Light2D = $Player/LanternSprite/LanternLight
 
 func _physics_process(delta):
-	if not game_over:
+	if not lantern_extinguished:
 		update_player(delta)
 		update_lantern(delta)
 		update_game_over()
-	else:
-		yield(get_tree().create_timer(3.0), "timeout")
-		tree.reload_current_scene()
 	
 func update_player(delta):
 	var running = Input.is_key_pressed(KEY_SHIFT)
@@ -39,10 +30,10 @@ func update_player(delta):
 
 	if Input.is_action_pressed("walk_right"):
 		velocity.x = speed
-		player_animated_sprite.scale.x = abs(player_animated_sprite.scale.x)
+		$Player.scale.x = abs($Player.scale.x)
 	elif Input.is_action_pressed("walk_left"):
 		velocity.x = -speed
-		player_animated_sprite.scale.x = -abs(player_animated_sprite.scale.x)
+		$Player.scale.x = -abs($Player.scale.x)
 
 	if Input.is_action_pressed("walk_down"):
 		velocity.y = speed
@@ -50,23 +41,23 @@ func update_player(delta):
 		velocity.y = -speed
 
 	if velocity.length_squared() > 0: 
-		player_animated_sprite.play("walk" if not running else "run")
+		$Player.play("walk" if not running else "run")
 	else: 
-		player_animated_sprite.play("idle")
+		$Player.play("idle")
 		
 	move_and_slide(velocity)
 	
 func update_lantern(delta):
 	lantern_oil = max(lantern_oil - LANTERN_OIL_PER_SECOND * delta, 0)
-	var lantern_light_scale = lantern_oil / LANTERN_OIL_MAX
+	var lantern_health = lantern_oil / LANTERN_OIL_MAX
 	var lantern_light_size = min(lantern_light.texture.get_width() * lantern_light.scale.x, lantern_light.texture.get_height() * lantern_light.scale.y)
 	if lantern_light_size > LANTERN_RADIUS_MIN:
-		lantern_light.scale.x = lantern_light_scale
-		lantern_light.scale.y = lantern_light_scale
-	lantern_light.energy = sqrt(lantern_oil / LANTERN_OIL_MAX)
-	lantern_health_hud.set_health(lantern_oil / LANTERN_OIL_MAX * 100)
+		lantern_light.scale.x = lantern_health
+		lantern_light.scale.y = lantern_health
+	lantern_light.energy = sqrt(lantern_health)
+	emit_signal("lantern_health_changed", lantern_health)
 
 func update_game_over():
-	if not game_over and lantern_light.energy <= LANTERN_ENERGY_GAME_OVER:
-		game_over = true
-		tree.get_root().get_node("/root/Level").add_child(game_over_hud)
+	if not lantern_extinguished and lantern_light.energy <= LANTERN_ENERGY_GAME_OVER:
+		lantern_extinguished = true
+		emit_signal("lantern_extinguished")

@@ -22,8 +22,9 @@ rect_rotation = -89.9999
 size_flags_vertical = 1
 custom_styles/fg = ExtResource( 1 )
 custom_styles/bg = ExtResource( 2 )
-step = 0.5
-value = 50.0
+max_value = 1.0
+step = 0.005
+value = 1.0
 percent_visible = false
 
 [node name="LampSprite" type="Sprite" parent="."]
