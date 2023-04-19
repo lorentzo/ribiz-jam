@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Oil",
+"language": "GDScript",
+"path": "res://Assets/Oil/Oil.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Assets/Player/Scripts/Player.gd"
 } ]
 _global_script_class_icons={
+"Oil": "",
 "Player": ""
 }
 
