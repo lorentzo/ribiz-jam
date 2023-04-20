@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Tiles/Textures/wall1.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Tiles/Textures/floor1.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Tiles/Textures/wall2.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Tiles/Textures/cornder1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Tiles/Textures/corner1.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Tiles/Textures/corner2.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Tiles/Textures/corner3.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Tiles/Textures/corner4.png" type="Texture" id=14]
@@ -21,12 +21,6 @@ polygon = PoolVector2Array( 51.1698, 31.956, 178.967, 124.066, 204.526, 106.223,
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 49.8797, 33.0009, 75.6481, 14.3055, 205.278, 105.741, 205.856, 169.398, 180.49, 188.527, 49.8797, 97.3013, 50.2816, 94.4882 )
-
-[sub_resource type="OccluderPolygon2D" id=17]
-polygon = PoolVector2Array( 53.1944, 108.056, 75.4166, 124.722, 118.472, 88.6111, 176.806, 119.167, 203.194, 108.056, 128.889, 53.8889 )
-
-[sub_resource type="ConvexPolygonShape2D" id=18]
-points = PoolVector2Array( 51.8055, 170.556, 55.9722, 105.278, 128.194, 55.9722, 203.889, 108.75, 201.806, 171.25, 176.806, 186.528, 118.472, 155.972, 77.5, 186.528 )
 
 [sub_resource type="OccluderPolygon2D" id=19]
 polygon = PoolVector2Array( 52.5, 34.4444, 111.528, 71.9444, 60.1389, 114.306, 76.1111, 126.806, 142.778, 73.3333, 67.0833, 20.5555 )
@@ -45,6 +39,12 @@ polygon = PoolVector2Array( 187.222, 17.0833, 199.028, 26.8055, 149.028, 67.7778
 
 [sub_resource type="ConvexPolygonShape2D" id=24]
 points = PoolVector2Array( 110.139, 74.7222, 183.75, 18.4722, 207.361, 36.5278, 206.667, 94.1667, 194.167, 100.417, 203.194, 109.444, 201.806, 170.556, 180.972, 186.528, 107.361, 130.972 )
+
+[sub_resource type="OccluderPolygon2D" id=25]
+polygon = PoolVector2Array( 57.5154, 108.634, 72.4653, 119.726, 123.102, 82.1104, 190.135, 118.279, 201.709, 109.599, 126.96, 58.4799 )
+
+[sub_resource type="ConvexPolygonShape2D" id=26]
+points = PoolVector2Array( 52.6929, 171.809, 53.6574, 108.152, 127.442, 55.1042, 203.156, 108.152, 203.156, 171.327, 180.008, 184.83, 124.549, 153.002, 75.841, 184.83 )
 
 [sub_resource type="OccluderPolygon2D" id=8]
 polygon = PoolVector2Array( 180.414, 13.1482, 52.1343, 107.188, 75.7647, 124.549, 205.008, 31.956 )
@@ -293,28 +293,6 @@ points = PoolVector2Array( 50.1852, 104.838, 180.393, 13.4028, 205.278, 32.5, 20
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 9/z_index = 0
-10/name = "corner1"
-10/texture = ExtResource( 11 )
-10/tex_offset = Vector2( 0, 0 )
-10/modulate = Color( 1, 1, 1, 1 )
-10/region = Rect2( 0, 0, 256, 224 )
-10/tile_mode = 0
-10/occluder_offset = Vector2( 0, 0 )
-10/occluder = SubResource( 17 )
-10/navigation_offset = Vector2( 0, 0 )
-10/shape_offset = Vector2( 0, 0 )
-10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-10/shape = SubResource( 18 )
-10/shape_one_way = false
-10/shape_one_way_margin = 1.0
-10/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 18 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-10/z_index = 0
 11/name = "corner2"
 11/texture = ExtResource( 12 )
 11/tex_offset = Vector2( 0, 0 )
@@ -395,3 +373,25 @@ points = PoolVector2Array( 50.1852, 104.838, 180.393, 13.4028, 205.278, 32.5, 20
 14/shape_one_way_margin = 0.0
 14/shapes = [  ]
 14/z_index = 0
+15/name = "corner1"
+15/texture = ExtResource( 11 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 0, 0, 256, 224 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/occluder = SubResource( 25 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape = SubResource( 26 )
+15/shape_one_way = false
+15/shape_one_way_margin = 1.0
+15/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 26 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+15/z_index = 0
