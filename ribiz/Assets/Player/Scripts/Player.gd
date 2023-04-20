@@ -1,7 +1,7 @@
 class_name Player
 extends KinematicBody2D
 
-signal lantern_health_changed(lantern_health)
+signal lantern_oil_changed(lantern_oil)
 signal lantern_extinguished
 
 const LANTERN_RADIUS_MIN: float = 200.0
@@ -52,13 +52,13 @@ func _update_player(delta):
 	
 func _update_lantern(delta):
 	lantern_oil = max(lantern_oil - LANTERN_OIL_PER_SECOND * delta, 0)
-	var lantern_health = lantern_oil / LANTERN_OIL_MAX
+	var lantern_oil_ratio = lantern_oil / LANTERN_OIL_MAX
 	var lantern_light_size = min(lantern_light.texture.get_width() * lantern_light.scale.x, lantern_light.texture.get_height() * lantern_light.scale.y)
 	if lantern_light_size > LANTERN_RADIUS_MIN:
-		lantern_light.scale.x = lantern_health
-		lantern_light.scale.y = lantern_health
-	lantern_light.energy = sqrt(lantern_health)
-	emit_signal("lantern_health_changed", lantern_health)
+		lantern_light.scale.x = lantern_oil_ratio
+		lantern_light.scale.y = lantern_oil_ratio
+	lantern_light.energy = sqrt(lantern_oil_ratio)
+	emit_signal("lantern_oil_changed", lantern_oil_ratio)
 
 func _update_game_over():
 	if not lantern_extinguished and lantern_light.energy <= LANTERN_ENERGY_GAME_OVER:
