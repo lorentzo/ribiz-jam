@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Player/Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Player/Textures/Lamp.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player/Textures/Lantern.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Player/Textures/LightRadius2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Player/SpriteFrames/Player.tres" type="SpriteFrames" id=4]
 
@@ -20,14 +20,15 @@ frames = ExtResource( 4 )
 animation = "idle"
 playing = true
 
-[node name="LampSprite" type="Sprite" parent="Player"]
-position = Vector2( 9, 9.663 )
-scale = Vector2( 0.75, 0.75 )
+[node name="LanternSprite" type="Sprite" parent="Player"]
+position = Vector2( 8.507, 7.287 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="LampLight" type="Light2D" parent="Player/LampSprite"]
+[node name="LanternLight" type="Light2D" parent="Player/LanternSprite"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
+color = Color( 1, 0.831373, 0.639216, 1 )
 shadow_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

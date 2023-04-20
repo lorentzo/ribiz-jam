@@ -8,15 +8,34 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "LanternOil",
+"language": "GDScript",
+"path": "res://Assets/LanternOil/LanternOil.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Assets/Player/Scripts/Player.gd"
+} ]
+_global_script_class_icons={
+"LanternOil": "",
+"Player": ""
+}
+
 [application]
 
 config/name="ribiz"
 run/main_scene="res://Scenes/Game.tscn"
+boot_splash/show_image=false
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [editor]
 
