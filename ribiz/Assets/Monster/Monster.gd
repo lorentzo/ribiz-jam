@@ -4,7 +4,7 @@ extends KinematicBody2D
 const CHASE_THRESHOLD = 150
 
 export var speed = 50
-var chase_speed = 2 * speed
+var chase_speed = 2.5 * speed
 
 enum MonsterState {
 	PATROL,
