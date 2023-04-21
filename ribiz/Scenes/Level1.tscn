@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Tiles/tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/LanternOil/LanternOil.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Monster/Monster.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -20, 29, 0, 0, 0, 0, -133, 57, 0, 0, 0, 0, -154, -14, 0, 0, 0, 0, -73, -95, 0, 0, 0, 0, 72, -84, 0, 0, 0, 0, 126, 19, 0, 0, 0, 0, -20, 29 )
+}
 
 [node name="Level1" type="Node2D"]
 
@@ -22,3 +28,9 @@ position = Vector2( 69, 251 )
 
 [node name="LanternOil3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1307, 573 )
+
+[node name="Monster1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 402, 250 )
+
+[node name="Path2D" type="Path2D" parent="Monster1"]
+curve = SubResource( 1 )
