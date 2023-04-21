@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ribiz"
-run/main_scene="res://Scenes/Game.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 boot_splash/show_image=false
 
 [display]

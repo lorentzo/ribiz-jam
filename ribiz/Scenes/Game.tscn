@@ -11,10 +11,10 @@ script = ExtResource( 4 )
 [node name="Level1" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 764, 136 )
+position = Vector2( 451, 327 )
+
+[node name="LanternHealthHUD" parent="." instance=ExtResource( 3 )]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 283, 506 )
 color = Color( 0, 0, 0.0196078, 1 )
-
-[node name="LanternHealthHUD" parent="." instance=ExtResource( 3 )]

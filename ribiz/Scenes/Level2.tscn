@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Tiles/tilemap.tres" type="TileSet" id=1]
+[ext_resource path="res://Assets/LanternOil/LanternOil.tscn" type="PackedScene" id=2]
+
+[node name="Level2" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 256, 180 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( -262142, 15, 0, -262141, 21, 0, -262140, 21, 0, -262139, 7, 0, -262138, 21, 0, -262137, 21, 0, -262136, 21, 0, -262135, 11, 0, -196606, 9, 0, -196605, 20, 0, -196604, 8, 0, -196603, 16, 0, -196602, 11, 0, -196601, 8, 0, -196600, 16, 0, -196599, 18, 0, -131070, 9, 0, -131069, 20, 0, -131068, 8, 0, -131067, 22, 0, -131066, 22, 0, -131065, 8, 0, -131064, 22, 0, -65534, 22, 0, -65533, 20, 0, -65532, 14, 0, -65531, 22, 0, -65530, 9, 0, -65529, 8, 0, -65528, 22, 0, 2, 13, 0, 3, 11, 0, 4, 8, 0, 5, 22, 0, 6, 22, 0, 7, 8, 0, 8, 22, 0, 65539, 13, 0, 65540, 21, 0, 65541, 12, 0, 65542, 13, 0, 65543, 7, 0, 65544, 12, 0 )
+
+[node name="Oil" parent="." instance=ExtResource( 2 )]
+position = Vector2( 768, 20 )
+
+[node name="Oil2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 398, 476 )
+
+[node name="Oil3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 778, 736 )
