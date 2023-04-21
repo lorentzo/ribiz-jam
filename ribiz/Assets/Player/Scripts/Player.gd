@@ -1,6 +1,7 @@
 class_name Player
 extends KinematicBody2D
 
+signal player_position
 signal lantern_oil_changed(lantern_oil)
 signal lantern_extinguished
 
@@ -49,6 +50,7 @@ func _update_player(delta):
 		$Player.play("idle")
 		
 	move_and_slide(velocity)
+	emit_signal("player_position", self.position)
 	
 func _update_lantern(delta):
 	lantern_oil = max(lantern_oil - LANTERN_OIL_PER_SECOND * delta, 0)

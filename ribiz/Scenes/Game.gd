@@ -12,6 +12,9 @@ func _ready():
 	for lantern_oil in tree.get_nodes_in_group("lantern_oil"):
 		lantern_oil.connect("lantern_oil_collected", $Player, "add_lantern_oil")
 
+	for monster in tree.get_nodes_in_group("monster"):
+		$Player.connect("player_position", monster, "update_player_position")
+
 func _process(delta):
 	if is_game_over:
 		yield(tree.create_timer(GAME_OVER_TIMEOUT), "timeout")
