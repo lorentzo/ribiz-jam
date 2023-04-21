@@ -1,7 +1,7 @@
 class_name Monster
 extends KinematicBody2D
 
-const CHASE_THRESHOLD = 10
+const CHASE_THRESHOLD = 150
 
 export var speed = 50
 var chase_speed = 2 * speed
@@ -30,16 +30,15 @@ func _physics_process(delta):
 		move_and_slide((player_position - position).normalized() * chase_speed)
 	elif state == MonsterState.PATROL:
 		if is_path_set_up:
-			var position = parent.position + self.position + follow.position
+			var position = follow.get_parent().position + follow.position
 			var player_distance = (player_position - position).length()
-			print(player_distance)
 			if player_distance < CHASE_THRESHOLD:
 				self.chase(position)
 
 func update_player_position(position: Vector2):
 	player_position = position
 
-func chase(position: Vector2):
+func chase(start_position: Vector2):
 	if state == MonsterState.CHASE:
 		return
 	
@@ -47,7 +46,7 @@ func chase(position: Vector2):
 	if follow == null:
 		return
 	
-	self.position = position
+	self.position = start_position
 	follow.remove_child(self)
 	parent.add_child(self)
 
@@ -90,4 +89,3 @@ func _set_up_path():
 	follow.add_child(self)
 	route.add_child(follow)
 	self.position = Vector2.ZERO
-
