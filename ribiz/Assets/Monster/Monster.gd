@@ -36,7 +36,7 @@ func _physics_process(delta):
 				navigation.set_target_location(chase_start_position)
 				self.return()
 			else:
-				var velocity = position.direction_to(navigation.get_next_location()) * speed
+				var velocity = position.direction_to(navigation.get_next_location()) * chase_speed
 				navigation.set_velocity(velocity)
 				move_and_slide(velocity)
 	elif state == MonsterState.PATROL:
