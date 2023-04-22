@@ -34,7 +34,7 @@ func _physics_process(delta):
 		else:
 			move_and_slide(player_offset.normalized() * chase_speed)
 	elif state == MonsterState.PATROL:
-		var position = follow.get_parent().position + follow.position
+		var position = follow.get_parent().position + follow.position if follow != null else self.position
 		var player_distance = (player_position - position).length()
 		if player_distance < CHASE_START_THRESHOLD:
 			self.chase(position)

@@ -35,3 +35,6 @@ position = Vector2( 116, 254 )
 [node name="Path2D" type="Path2D" parent="Monster1"]
 position = Vector2( 308, -4 )
 curve = SubResource( 1 )
+
+[node name="Monster2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 841, 172 )
