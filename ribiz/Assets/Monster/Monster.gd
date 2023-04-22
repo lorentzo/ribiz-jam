@@ -16,6 +16,7 @@ enum MonsterState {
 var state = MonsterState.PATROL
 var follow: PathFollow2D = null
 var player_position: Vector2
+var chase_start_position: Vector2
 
 onready var parent = get_parent()
 onready var navigation = $NavigationAgent2D
@@ -27,12 +28,17 @@ func _ready():
 
 func _physics_process(delta):
 	if state == MonsterState.CHASE:
-		var player_offset = player_position - position
-		var player_distance = player_offset.length()
-		if player_distance > CHASE_STOP_THRESHOLD:
-			self.return()
-		else:
-			move_and_slide(player_offset.normalized() * chase_speed)
+		navigation.set_target_location(player_position)
+		if not navigation.is_navigation_finished():
+			var player_offset = player_position - position
+			var player_distance = player_offset.length()
+			if player_distance > CHASE_STOP_THRESHOLD:
+				navigation.set_target_location(chase_start_position)
+				self.return()
+			else:
+				var velocity = position.direction_to(navigation.get_next_location()) * speed
+				navigation.set_velocity(velocity)
+				move_and_slide(velocity)
 	elif state == MonsterState.PATROL:
 		var position = follow.get_parent().position + follow.position if follow != null else self.position
 		var player_distance = (player_position - position).length()
@@ -67,9 +73,8 @@ func chase(start_position: Vector2):
 	parent.add_child(self)
 	
 	follow.set_process(false)
-	
 	if was_in_patrol:
-		navigation.set_target_location(start_position)
+		chase_start_position = start_position
 
 func patrol():
 	if state == MonsterState.PATROL:
