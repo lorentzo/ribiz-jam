@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -115, 184, 0, 0, 0, 0, -385, -6, 0, 0, 0, 0, -152, -166, 0, 0, 0, 0, 72, -84, 0, 0, 0, 0, 200, -22, 0, 0, 0, 0, -115, 184 )
+"points": PoolVector2Array( 0, 0, 0, 0, -241, 92, 0, 0, 0, 0, -382, 0, 0, 0, 0, 0, -12, -254, 0, 0, 0, 0, 116, -173, 0, 0, 0, 0, -241, 92 )
 }
 
 [node name="Level1" type="Node2D"]
@@ -33,5 +33,5 @@ position = Vector2( 1307, 573 )
 position = Vector2( 116, 254 )
 
 [node name="Path2D" type="Path2D" parent="Monster1"]
-position = Vector2( 286, -4 )
+position = Vector2( 308, -4 )
 curve = SubResource( 1 )
