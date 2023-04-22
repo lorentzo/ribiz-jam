@@ -1,7 +1,8 @@
 class_name Monster
 extends KinematicBody2D
 
-const CHASE_THRESHOLD = 150
+const CHASE_START_THRESHOLD = 150
+const CHASE_STOP_THRESHOLD = 300
 
 export var speed = 50
 var chase_speed = 2.5 * speed
@@ -15,7 +16,6 @@ enum MonsterState {
 var state = MonsterState.PATROL
 var follow: PathFollow2D = null
 var player_position: Vector2
-var is_path_set_up: bool = false
 
 onready var initial_position = self.position
 onready var parent = get_parent()
@@ -27,13 +27,23 @@ func _ready():
 
 func _physics_process(delta):
 	if state == MonsterState.CHASE:
-		move_and_slide((player_position - position).normalized() * chase_speed)
+		var player_offset = player_position - position
+		var player_distance = player_offset.length()
+		if player_distance > CHASE_STOP_THRESHOLD:
+			self.return()
+		else:
+			move_and_slide(player_offset.normalized() * chase_speed)
 	elif state == MonsterState.PATROL:
-		if is_path_set_up:
-			var position = follow.get_parent().position + follow.position
-			var player_distance = (player_position - position).length()
-			if player_distance < CHASE_THRESHOLD:
-				self.chase(position)
+		var position = follow.get_parent().position + follow.position
+		var player_distance = (player_position - position).length()
+		if player_distance < CHASE_START_THRESHOLD:
+			self.chase(position)
+	elif state == MonsterState.RETURN:
+		var player_distance = (player_position - position).length()
+		if player_distance < CHASE_START_THRESHOLD:
+			self.chase(position)
+		else:
+			pass # TODO Implement return to patrolling
 
 func update_player_position(position: Vector2):
 	player_position = position
@@ -62,9 +72,13 @@ func patrol():
 	parent.remove_child(self)
 	follow.add_child(self)
 
-func _set_up_path():
-	is_path_set_up = true
+func return():
+	if state == MonsterState.RETURN:
+		return
+	
+	state = MonsterState.RETURN
 
+func _set_up_path():
 	var route: Path2D = null
 
 	for child in get_children():
@@ -77,11 +91,10 @@ func _set_up_path():
 		
 	# Swap nodes
 	# -> Path2D/PathFollow2D becomes the parent of Monster
-	var route_position = self.position + route.position
 	remove_child(route)
 	parent.add_child(route)
 	parent.remove_child(self)
-	route.position = route_position
+	route.position = self.position + route.position
 	
 	follow = MonsterFollow.new(speed)
 	follow.loop = true
