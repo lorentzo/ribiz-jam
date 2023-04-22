@@ -89,9 +89,9 @@ polygon = PoolVector2Array( 180.414, 13.1482, 52.1343, 107.188, 75.7647, 124.549
 points = PoolVector2Array( 50.7639, 107.477, 179.815, 15.463, 204.201, 31.7953, 205.004, 96.8994, 76.4037, 188.126, 69.2824, 183.287, 51.3426, 169.398 )
 
 [sub_resource type="NavigationPolygon" id=39]
-vertices = PoolVector2Array( 131, 57, 220, 129, 129, 207, 25, 129 )
+vertices = PoolVector2Array( 129, 40, 256, 134, 126, 224, 0, 132 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 131, 57, 220, 129, 129, 207, 25, 129 ) ]
+outlines = [ PoolVector2Array( 129, 40, 256, 134, 126, 224, 0, 132 ) ]
 
 [sub_resource type="OccluderPolygon2D" id=35]
 polygon = PoolVector2Array( 55.8333, 26, 186.667, 125.167, 202.5, 114.333, 71.6666, 16 )
