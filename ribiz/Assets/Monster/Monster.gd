@@ -17,8 +17,8 @@ var state = MonsterState.PATROL
 var follow: PathFollow2D = null
 var player_position: Vector2
 
-onready var initial_position = self.position
 onready var parent = get_parent()
+onready var navigation = $NavigationAgent2D
 
 # NOTE: A monster will follow a specified path if there is a Path2D child node
 func _ready():
@@ -43,7 +43,12 @@ func _physics_process(delta):
 		if player_distance < CHASE_START_THRESHOLD:
 			self.chase(position)
 		else:
-			pass # TODO Implement return to patrolling
+			if not navigation.is_navigation_finished():
+				var velocity = position.direction_to(navigation.get_next_location()) * speed
+				navigation.set_velocity(velocity)
+				move_and_slide(velocity)
+			else:
+				self.patrol()
 
 func update_player_position(position: Vector2):
 	player_position = position
@@ -52,6 +57,7 @@ func chase(start_position: Vector2):
 	if state == MonsterState.CHASE:
 		return
 	
+	var was_in_patrol = (state == MonsterState.PATROL)
 	state = MonsterState.CHASE
 	if follow == null:
 		return
@@ -59,6 +65,11 @@ func chase(start_position: Vector2):
 	self.position = start_position
 	follow.remove_child(self)
 	parent.add_child(self)
+	
+	follow.set_process(false)
+	
+	if was_in_patrol:
+		navigation.set_target_location(start_position)
 
 func patrol():
 	if state == MonsterState.PATROL:
@@ -66,11 +77,12 @@ func patrol():
 	
 	state = MonsterState.PATROL
 	if follow == null:
-		self.position = initial_position
 		return
 		
 	parent.remove_child(self)
 	follow.add_child(self)
+	follow.set_process(true)
+	self.position = Vector2.ZERO
 
 func return():
 	if state == MonsterState.RETURN:
