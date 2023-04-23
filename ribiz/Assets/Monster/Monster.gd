@@ -64,6 +64,8 @@ func chase(start_position: Vector2):
 		return
 	
 	var was_in_patrol = (state == MonsterState.PATROL)
+	if was_in_patrol:
+		chase_start_position = start_position
 	state = MonsterState.CHASE
 	if follow == null:
 		return
@@ -73,8 +75,6 @@ func chase(start_position: Vector2):
 	parent.add_child(self)
 	
 	follow.set_process(false)
-	if was_in_patrol:
-		chase_start_position = start_position
 
 func patrol():
 	if state == MonsterState.PATROL:
