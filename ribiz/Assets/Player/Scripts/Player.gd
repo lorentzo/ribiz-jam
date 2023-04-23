@@ -52,6 +52,11 @@ func _update_player(delta):
 	move_and_slide(velocity)
 	emit_signal("player_position", self.position)
 	
+	for index in get_slide_count():
+		var collision = get_slide_collision(index)
+		if collision.collider is Monster:
+			lantern_oil = 0
+
 func _update_lantern(delta):
 	lantern_oil = max(lantern_oil - LANTERN_OIL_PER_SECOND * delta, 0)
 	var lantern_oil_ratio = lantern_oil / LANTERN_OIL_MAX
