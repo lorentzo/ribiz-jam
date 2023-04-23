@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_wall_6_corner.png-56eee7d26ec54098313665a63b65fae7.stex"
+path="res://.import/_template_corner_2.png-aed1401eb87f64abe1f1a6d93ff5193b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Textures/tile_wall_6_corner.png"
-dest_files=[ "res://.import/tile_wall_6_corner.png-56eee7d26ec54098313665a63b65fae7.stex" ]
+source_file="res://Assets/Tiles/Textures/_template_corner_2.png"
+dest_files=[ "res://.import/_template_corner_2.png-aed1401eb87f64abe1f1a6d93ff5193b.stex" ]
 
 [params]
 
