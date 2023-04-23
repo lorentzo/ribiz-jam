@@ -15,6 +15,7 @@ const LANTERN_OIL_PER_SECOND: float = 1.0
 var walking_speed: float = 100
 var running_speed: float = RUNNING_MULTIPLIER * walking_speed
 var lantern_oil = LANTERN_OIL_MAX
+var lantern_extinguished: bool = false
 
 onready var lantern_light: Light2D = $Player/LanternSprite/LanternLight
 
@@ -22,6 +23,9 @@ func add_lantern_oil(amount: float):
 	lantern_oil = min(lantern_oil + amount, LANTERN_OIL_MAX)
 
 func _physics_process(delta):
+	if lantern_extinguished:
+		return
+	
 	var running = Input.is_key_pressed(KEY_SHIFT)
 	_update_player(delta, running)
 	_update_lantern(delta, running)
@@ -33,22 +37,23 @@ func _update_player(delta: float, running: bool):
 	var velocity = Vector2()
 
 	if Input.is_action_pressed("walk_right"):
-		velocity.x = speed
+		velocity.x = 1
 		$Player.scale.x = abs($Player.scale.x)
 	elif Input.is_action_pressed("walk_left"):
-		velocity.x = -speed
+		velocity.x = -1
 		$Player.scale.x = -abs($Player.scale.x)
 
 	if Input.is_action_pressed("walk_down"):
-		velocity.y = speed
+		velocity.y = 1
 	elif Input.is_action_pressed("walk_up"):
-		velocity.y = -speed
+		velocity.y = -1
 
 	if velocity.length_squared() > 0: 
 		$Player.play("walk" if not running else "run")
 	else: 
 		$Player.play("idle")
-		
+	
+	velocity = velocity.normalized() * speed
 	move_and_slide(velocity)
 	emit_signal("player_position", self.position)
 	
@@ -71,5 +76,6 @@ func _update_lantern(delta: float, running: bool):
 	emit_signal("lantern_oil_changed", lantern_oil_ratio)
 
 func _update_game_over():
-	if lantern_light.energy <= LANTERN_ENERGY_GAME_OVER:
+	if not lantern_extinguished and lantern_light.energy <= LANTERN_ENERGY_GAME_OVER:
 		emit_signal("lantern_extinguished")
+		lantern_extinguished = true
