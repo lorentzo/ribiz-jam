@@ -15,13 +15,31 @@ _global_script_classes=[ {
 "path": "res://Assets/LanternOil/LanternOil.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "Monster",
+"language": "GDScript",
+"path": "res://Assets/Monster/Monster.gd"
+}, {
+"base": "PathFollow2D",
+"class": "MonsterFollow",
+"language": "GDScript",
+"path": "res://Assets/Monster/MonsterFollow.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Assets/Player/Scripts/Player.gd"
+}, {
+"base": "Area2D",
+"class": "Scent",
+"language": "GDScript",
+"path": "res://Assets/Player/Scripts/Scent.gd"
 } ]
 _global_script_class_icons={
 "LanternOil": "",
-"Player": ""
+"Monster": "",
+"MonsterFollow": "",
+"Player": "",
+"Scent": ""
 }
 
 [application]
