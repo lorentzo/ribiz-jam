@@ -77,17 +77,21 @@ func _physics_process(delta):
 			self.chase(position)
 		else:
 			var return_direction = Vector2.ZERO
-			for i in range(return_scent_trail.size() - 1, -1, -1):
-				var scent = return_scent_trail[i]
-				ray.cast_to = scent.position - position
-				ray.force_raycast_update()
-				var collider = ray.get_collider()
-				if collider == scent:
-					return_direction = position.direction_to(scent.position)
-					for j in range(i):
-						return_scent_trail[j].queue_free()
-					return_scent_trail = return_scent_trail.slice(i, return_scent_trail.size() - 1)
-					break
+
+			if return_scent_trail.size() == 1:
+				return_direction = position.direction_to(return_scent_trail[0].position)
+			else:
+				for i in range(return_scent_trail.size() - 1, -1, -1):
+					var scent = return_scent_trail[i]
+					ray.cast_to = scent.position - position
+					ray.force_raycast_update()
+					var collider = ray.get_collider()
+					if collider == scent:
+						return_direction = position.direction_to(scent.position)
+						for j in range(i):
+							return_scent_trail[j].queue_free()
+						return_scent_trail = return_scent_trail.slice(i, return_scent_trail.size() - 1)
+						break
 
 			if return_direction == Vector2.ZERO and return_scent_trail.size() == 1:
 				return_scent_trail[0].queue_free()
@@ -105,7 +109,7 @@ func update_player_scent_trail(scent_trail):
 func chase(start_position: Vector2):
 	if state == MonsterState.CHASE:
 		return
-	
+
 	var was_in_patrol = (state == MonsterState.PATROL)
 	if was_in_patrol:
 		chase_start_position = start_position
