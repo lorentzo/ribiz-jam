@@ -40,4 +40,5 @@ current = true
 zoom = Vector2( 0.4, 0.4 )
 
 [node name="ScentTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
