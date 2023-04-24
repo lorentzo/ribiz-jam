@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -241, 92, 0, 0, 0, 0, -382, 0, 0, 0, 0, 0, -12, -254, 0, 0, 0, 0, 116, -173, 0, 0, 0, 0, -241, 92 )
+"points": PoolVector2Array( 0, 0, 0, 0, -222, 81, 0, 0, 0, 0, -349, 6, 0, 0, 0, 0, -2, -239, 0, 0, 0, 0, 116, -173, 0, 0, 0, 0, -241, 92 )
 }
 
 [node name="Level1" type="Node2D"]
