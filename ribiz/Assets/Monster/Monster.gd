@@ -21,6 +21,7 @@ var player_scent_trail = []
 var chase_start_position: Vector2
 var return_scent_last_position: Vector2 = Vector2.ZERO
 var return_scent_trail = []
+var previous_position: Vector2 = Vector2.ZERO
 
 onready var ScentScene = preload("res://Assets/Player/Scent.tscn")
 onready var parent = get_parent()
@@ -74,6 +75,15 @@ func _physics_process(delta):
 		var player_distance = (player_position - position).length()
 		if player_distance < CHASE_START_THRESHOLD:
 			self.chase(position)
+			return
+
+		if follow != null:
+			$AnimatedSprite.scale.x = abs($AnimatedSprite.scale.x) * binary_sign(previous_position.direction_to(position).x)
+			previous_position = position
+		else:
+			$AnimatedSprite.frame = 0
+			$AnimatedSprite.stop()
+
 	elif state == MonsterState.RETURN:
 		var player_distance = (player_position - position).length()
 		if player_distance < CHASE_START_THRESHOLD:
@@ -125,6 +135,7 @@ func chase(start_position: Vector2):
 		chase_start_position = start_position
 
 	state = MonsterState.CHASE
+	$AnimatedSprite.play()
 	return_scent_timer.start()
 	
 	if follow == null:
@@ -149,6 +160,7 @@ func patrol():
 	return_scent_timer.stop()
 	
 	if follow == null:
+		$AnimatedSprite.play()
 		return
 		
 	parent.remove_child(self)
@@ -161,6 +173,7 @@ func return():
 		return
 	
 	state = MonsterState.RETURN
+	$AnimatedSprite.play()
 	return_scent_timer.stop()
 
 func _set_up_path():
