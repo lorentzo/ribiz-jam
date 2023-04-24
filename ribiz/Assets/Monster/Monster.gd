@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 const CHASE_START_THRESHOLD = 150
 const CHASE_STOP_THRESHOLD = 300
+const PATROL_START_THRESHOLD = 10
 
 export var speed = 50
 var chase_speed = 2.5 * speed
@@ -65,6 +66,8 @@ func _physics_process(delta):
 					if collider is Scent:
 						chase_direction = position.direction_to(scent.position)
 						break
+
+			$AnimatedSprite.scale.x = abs($AnimatedSprite.scale.x) * binary_sign(chase_direction.x)
 			move_and_slide(chase_direction * chase_speed)
 	elif state == MonsterState.PATROL:
 		var position = follow.get_parent().position + follow.position if follow != null else self.position
@@ -77,9 +80,12 @@ func _physics_process(delta):
 			self.chase(position)
 		else:
 			var return_direction = Vector2.ZERO
+			var back_to_patrol: bool = false
 
 			if return_scent_trail.size() == 1:
-				return_direction = position.direction_to(return_scent_trail[0].position)
+				var scent = return_scent_trail[0]
+				return_direction = position.direction_to(scent.position)
+				back_to_patrol = position.distance_to(scent.position) < PATROL_START_THRESHOLD
 			else:
 				for i in range(return_scent_trail.size() - 1, -1, -1):
 					var scent = return_scent_trail[i]
@@ -93,12 +99,16 @@ func _physics_process(delta):
 						return_scent_trail = return_scent_trail.slice(i, return_scent_trail.size() - 1)
 						break
 
-			if return_direction == Vector2.ZERO and return_scent_trail.size() == 1:
+			if back_to_patrol:
 				return_scent_trail[0].queue_free()
 				return_scent_trail.clear()
 				self.patrol()
 			else:
+				$AnimatedSprite.scale.x = abs($AnimatedSprite.scale.x) * binary_sign(return_direction.x)
 				move_and_slide(return_direction * speed)
+
+func binary_sign(x):
+	return 1 if x >= 0 else -1
 
 func update_player_position(position: Vector2):
 	player_position = position
