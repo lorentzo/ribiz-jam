@@ -14,6 +14,7 @@ func _ready():
 
 	for monster in tree.get_nodes_in_group("monster"):
 		$Player.connect("player_position", monster, "update_player_position")
+		$Player.connect("player_scent_trail", monster, "update_player_scent_trail")
 
 func _process(delta):
 	if is_game_over:

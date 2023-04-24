@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Assets/Player/Scripts/Player.gd"
+}, {
+"base": "Area2D",
+"class": "Scent",
+"language": "GDScript",
+"path": "res://Assets/Player/Scripts/Scent.gd"
 } ]
 _global_script_class_icons={
 "LanternOil": "",
 "Monster": "",
 "MonsterFollow": "",
-"Player": ""
+"Player": "",
+"Scent": ""
 }
 
 [application]

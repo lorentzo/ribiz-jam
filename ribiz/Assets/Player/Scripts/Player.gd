@@ -2,6 +2,7 @@ class_name Player
 extends KinematicBody2D
 
 signal player_position
+signal player_scent_trail
 signal lantern_oil_changed(lantern_oil)
 signal lantern_extinguished
 
@@ -38,12 +39,9 @@ func _add_scent():
 	scent_last_position = scent.position
 	scent.connect("scent_expired", self, "_on_scent_expired")
 
-	var rect = ColorRect.new()
-	rect.rect_size = Vector2(10, 10)
-	scent.add_child(rect)
-
 	get_parent().add_child(scent)
 	scent_trail.push_front(scent)
+	emit_signal("player_scent_trail", scent_trail)
 
 func _on_scent_expired(scent):
 	scent_trail.erase(scent)
@@ -85,7 +83,7 @@ func _update_player(delta: float, running: bool):
 	
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
-		if collision.collider is Monster:
+		if collision.collider.is_in_group("monster"):
 			lantern_oil = 0
 
 func _update_lantern(delta: float, running: bool):

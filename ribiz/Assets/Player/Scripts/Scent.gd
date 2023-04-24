@@ -1,5 +1,5 @@
-extends Node2D
-
+class_name Scent
+extends Area2D
 signal scent_expired
 
 func _ready():

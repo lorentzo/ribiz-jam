@@ -16,10 +16,11 @@ enum MonsterState {
 var state = MonsterState.PATROL
 var follow: PathFollow2D = null
 var player_position: Vector2
+var player_scent_trail = []
 var chase_start_position: Vector2
 
 onready var parent = get_parent()
-onready var navigation = $NavigationAgent2D
+onready var ray: RayCast2D = $RayCast2D
 
 # NOTE: A monster will follow a specified path if there is a Path2D child node
 func _ready():
@@ -28,17 +29,28 @@ func _ready():
 
 func _physics_process(delta):
 	if state == MonsterState.CHASE:
-		navigation.set_target_location(player_position)
-		if not navigation.is_navigation_finished():
-			var player_offset = player_position - position
-			var player_distance = player_offset.length()
-			if player_distance > CHASE_STOP_THRESHOLD:
-				navigation.set_target_location(chase_start_position)
-				self.return()
+		var player_offset = player_position - position
+		var player_distance = player_offset.length()
+		if player_distance > CHASE_STOP_THRESHOLD:
+			self.return()
+			return
+
+		ray.cast_to = player_offset
+		ray.force_raycast_update()
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+			var chase_direction = Vector2.ZERO
+			if collider is Player:
+				chase_direction = position.direction_to(player_position)
 			else:
-				var velocity = position.direction_to(navigation.get_next_location()) * chase_speed
-				navigation.set_velocity(velocity)
-				move_and_slide(velocity)
+				for scent in player_scent_trail:
+					ray.cast_to = scent.position - position
+					ray.force_raycast_update()
+					collider = ray.get_collider()
+					if collider is Scent:
+						chase_direction = position.direction_to(scent.position)
+						break
+			move_and_slide(chase_direction * chase_speed)
 	elif state == MonsterState.PATROL:
 		var position = follow.get_parent().position + follow.position if follow != null else self.position
 		var player_distance = (player_position - position).length()
@@ -49,15 +61,13 @@ func _physics_process(delta):
 		if player_distance < CHASE_START_THRESHOLD:
 			self.chase(position)
 		else:
-			if not navigation.is_navigation_finished():
-				var velocity = position.direction_to(navigation.get_next_location()) * speed
-				navigation.set_velocity(velocity)
-				move_and_slide(velocity)
-			else:
-				self.patrol()
+			pass # TODO
 
 func update_player_position(position: Vector2):
 	player_position = position
+
+func update_player_scent_trail(scent_trail):
+	player_scent_trail = scent_trail
 
 func chase(start_position: Vector2):
 	if state == MonsterState.CHASE:

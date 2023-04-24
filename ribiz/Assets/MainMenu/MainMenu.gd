@@ -8,6 +8,3 @@ func _on_StartGameStoryButton_pressed():
 
 func _on_ExitGameButton_pressed():
 	get_tree().quit()
-
-
-
