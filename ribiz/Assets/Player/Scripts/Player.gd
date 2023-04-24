@@ -16,11 +16,30 @@ var walking_speed: float = 100
 var running_speed: float = RUNNING_MULTIPLIER * walking_speed
 var lantern_oil = LANTERN_OIL_MAX
 var lantern_extinguished: bool = false
+var scent_trail = []
 
 onready var lantern_light: Light2D = $Player/LanternSprite/LanternLight
+onready var Scent = preload("res://Assets/Player/Scent.tscn")
 
 func add_lantern_oil(amount: float):
 	lantern_oil = min(lantern_oil + amount, LANTERN_OIL_MAX)
+
+func _ready():
+	$ScentTimer.connect("timeout", self, "_add_scent")
+
+func _add_scent():
+	var scent = Scent.instance()
+	scent.position = self.position
+	scent.connect("scent_expired", self, "_on_scent_expired")
+	var rect = ColorRect.new()
+	rect.rect_size = Vector2(10, 10)
+	scent.add_child(rect)
+
+	get_parent().add_child(scent)
+	scent_trail.push_front(scent)
+
+func _on_scent_expired(scent):
+	scent_trail.erase(scent)
 
 func _physics_process(delta):
 	if lantern_extinguished:
