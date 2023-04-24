@@ -11,11 +11,13 @@ const LANTERN_RADIUS_MIN: float = 200.0
 const LANTERN_ENERGY_GAME_OVER: float = 0.1
 const LANTERN_OIL_MAX: float = 100.0
 const LANTERN_OIL_PER_SECOND: float = 1.0
+const MIN_SCENT_DISTANCE: float = 10.0
 
 var walking_speed: float = 100
 var running_speed: float = RUNNING_MULTIPLIER * walking_speed
 var lantern_oil = LANTERN_OIL_MAX
 var lantern_extinguished: bool = false
+var scent_last_position: Vector2 = Vector2.ZERO
 var scent_trail = []
 
 onready var lantern_light: Light2D = $Player/LanternSprite/LanternLight
@@ -28,9 +30,14 @@ func _ready():
 	$ScentTimer.connect("timeout", self, "_add_scent")
 
 func _add_scent():
+	if not (scent_trail.empty() or self.position.distance_to(scent_last_position) > MIN_SCENT_DISTANCE):
+		return
+	
 	var scent = Scent.instance()
 	scent.position = self.position
+	scent_last_position = scent.position
 	scent.connect("scent_expired", self, "_on_scent_expired")
+
 	var rect = ColorRect.new()
 	rect.rect_size = Vector2(10, 10)
 	scent.add_child(rect)
