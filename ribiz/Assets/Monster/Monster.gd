@@ -89,9 +89,8 @@ func _physics_process(delta):
 					return_scent_trail = return_scent_trail.slice(i, return_scent_trail.size() - 1)
 					break
 
-			if return_direction == Vector2.ZERO:
-				for scent in return_scent_trail:
-					scent.queue_free()
+			if return_direction == Vector2.ZERO and return_scent_trail.size() == 1:
+				return_scent_trail[0].queue_free()
 				return_scent_trail.clear()
 				self.patrol()
 			else:
