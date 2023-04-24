@@ -18,14 +18,29 @@ var follow: PathFollow2D = null
 var player_position: Vector2
 var player_scent_trail = []
 var chase_start_position: Vector2
+var return_scent_last_position: Vector2 = Vector2.ZERO
+var return_scent_trail = []
 
+onready var ScentScene = preload("res://Assets/Player/Scent.tscn")
 onready var parent = get_parent()
 onready var ray: RayCast2D = $RayCast2D
+onready var return_scent_timer = $ReturnScentTimer
+
 
 # NOTE: A monster will follow a specified path if there is a Path2D child node
 func _ready():
 	add_to_group("monster")
+	return_scent_timer.connect("timeout", self, "_add_return_scent")
 	call_deferred("_set_up_path")
+
+func _add_return_scent(scent_position = null):
+	var scent = ScentScene.instance()
+	scent.disable_expiration()
+	scent.position = self.position if scent_position == null else scent_position
+	return_scent_last_position = scent.position
+
+	get_parent().add_child(scent)
+	return_scent_trail.push_front(scent)
 
 func _physics_process(delta):
 	if state == MonsterState.CHASE:
@@ -61,7 +76,26 @@ func _physics_process(delta):
 		if player_distance < CHASE_START_THRESHOLD:
 			self.chase(position)
 		else:
-			pass # TODO
+			var return_direction = Vector2.ZERO
+			for i in range(return_scent_trail.size() - 1, -1, -1):
+				var scent = return_scent_trail[i]
+				ray.cast_to = scent.position - position
+				ray.force_raycast_update()
+				var collider = ray.get_collider()
+				if collider == scent:
+					return_direction = position.direction_to(scent.position)
+					for j in range(i):
+						return_scent_trail[j].queue_free()
+					return_scent_trail = return_scent_trail.slice(i, return_scent_trail.size() - 1)
+					break
+
+			if return_direction == Vector2.ZERO:
+				for scent in return_scent_trail:
+					scent.queue_free()
+				return_scent_trail.clear()
+				self.patrol()
+			else:
+				move_and_slide(return_direction * speed)
 
 func update_player_position(position: Vector2):
 	player_position = position
@@ -76,13 +110,21 @@ func chase(start_position: Vector2):
 	var was_in_patrol = (state == MonsterState.PATROL)
 	if was_in_patrol:
 		chase_start_position = start_position
+
 	state = MonsterState.CHASE
+	return_scent_timer.start()
+	
 	if follow == null:
+		if was_in_patrol:
+			_add_return_scent(chase_start_position)
 		return
 	
 	self.position = start_position
 	follow.remove_child(self)
 	parent.add_child(self)
+	
+	if was_in_patrol:
+		_add_return_scent(chase_start_position)
 	
 	follow.set_process(false)
 
@@ -91,6 +133,8 @@ func patrol():
 		return
 	
 	state = MonsterState.PATROL
+	return_scent_timer.stop()
+	
 	if follow == null:
 		return
 		
@@ -104,6 +148,7 @@ func return():
 		return
 	
 	state = MonsterState.RETURN
+	return_scent_timer.stop()
 
 func _set_up_path():
 	var route: Path2D = null
