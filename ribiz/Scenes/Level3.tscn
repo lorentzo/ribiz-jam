@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Tiles/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/LanternOil/LanternOil.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Finish.tscn" type="PackedScene" id=3]
 
 [node name="Level3" type="Node2D"]
 
@@ -18,3 +19,9 @@ position = Vector2( 323, 174 )
 
 [node name="Oil2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 206, 838 )
+
+[node name="Start" type="Node2D" parent="."]
+position = Vector2( 366, 190 )
+
+[node name="Finish" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1272, 126 )
