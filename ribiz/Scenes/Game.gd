@@ -1,11 +1,12 @@
 extends Node2D
 
-const GAME_OVER_TIMEOUT: float = 3.0
-const THEME_DB_OFFSET: float = -5.0
+#const GAME_OVER_TIMEOUT: float = 3.0
+const THEME_DB_OFFSET: float = -10.0
 
 onready var game_over_hud = preload("res://Assets/HUD/GameOver.tscn").instance()
 onready var tree = get_tree()
 onready var theme = $ThemePlayer
+onready var game_over = $GameOverPlayer
 var is_game_over: bool = false
 
 func _ready():
@@ -21,8 +22,8 @@ func _ready():
 
 func _process(delta):
 	if is_game_over:
-		yield(tree.create_timer(GAME_OVER_TIMEOUT), "timeout")
 		tree.reload_current_scene()
+#		yield(tree.create_timer(GAME_OVER_TIMEOUT), "timeout")
 
 func _set_theme_volume(volume_percentage: float):
 	theme.volume_db = 10 * log(volume_percentage) / log(10) + THEME_DB_OFFSET
@@ -30,4 +31,6 @@ func _set_theme_volume(volume_percentage: float):
 func _set_game_over():
 	self.add_child(game_over_hud)
 	theme.stop()
+	game_over.play()
+	yield(game_over, "finished")
 	is_game_over = true
