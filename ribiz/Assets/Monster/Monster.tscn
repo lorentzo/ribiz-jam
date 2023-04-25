@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Monster/Monster.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Monster/MonsterSpriteFrames.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://Assets/Monster/MonsterSpriteFrames_art1.tres" type="SpriteFrames" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.5556, 15.7778 )
@@ -17,11 +17,12 @@ collide_with_areas = true
 wait_time = 0.5
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 3, 3 )
+scale = Vector2( 0.4, 0.4 )
 frames = ExtResource( 2 )
-frame = 7
+frame = 37
+speed_scale = 5.0
 playing = true
-offset = Vector2( 0, -4.778 )
+offset = Vector2( 0, -21 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.999998, -2.5 )
