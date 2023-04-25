@@ -3,8 +3,8 @@
 [ext_resource path="res://Assets/Monster/Monster.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Monster/MonsterSpriteFrames_art1.tres" type="SpriteFrames" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.5556, 15.7778 )
+[sub_resource type="CapsuleShape2D" id=1]
+height = 4.0
 
 [node name="Monster" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -19,12 +19,12 @@ wait_time = 0.5
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.4, 0.4 )
 frames = ExtResource( 2 )
-frame = 37
+frame = 39
 speed_scale = 5.0
 playing = true
 offset = Vector2( 0, -21 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.999998, -2.5 )
+position = Vector2( 0, -9 )
 scale = Vector2( 2.25, 2.25 )
 shape = SubResource( 1 )
