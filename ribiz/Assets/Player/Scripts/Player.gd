@@ -21,7 +21,7 @@ var lantern_extinguished: bool = false
 var scent_last_position: Vector2 = Vector2.ZERO
 var scent_trail = []
 
-onready var lantern_light: Light2D = $Player/LanternSprite/LanternLight
+onready var lantern_light: Light2D = $LanternLight
 onready var Scent = preload("res://Assets/Player/Scent.tscn")
 
 func add_lantern_oil(amount: float):
