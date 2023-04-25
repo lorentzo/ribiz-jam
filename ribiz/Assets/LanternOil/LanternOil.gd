@@ -15,4 +15,7 @@ func _ready():
 func _on_body_entered(body):
 	if body is Player:
 		emit_signal("lantern_oil_collected", self.amount)
+		self.hide()
+		$AudioStreamPlayer2D.play()
+		yield($AudioStreamPlayer2D, "finished")
 		queue_free()
