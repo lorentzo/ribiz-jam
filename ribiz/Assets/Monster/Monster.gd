@@ -136,6 +136,7 @@ func chase(start_position: Vector2):
 
 	state = MonsterState.CHASE
 	$AnimatedSprite.play()
+	$SoundPlayer.play()
 	return_scent_timer.start()
 	
 	if follow == null:
@@ -158,6 +159,7 @@ func patrol():
 	
 	state = MonsterState.PATROL
 	return_scent_timer.stop()
+	$SoundPlayer.stop()
 	
 	if follow == null:
 		$AnimatedSprite.play()
