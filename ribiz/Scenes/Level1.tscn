@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Tiles/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/LanternOil/LanternOil.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Monster/Monster.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Monster/Monster2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Finish.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -43,3 +44,9 @@ position = Vector2( 841, 172 )
 
 [node name="Monster3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 827, 544 )
+
+[node name="Start" type="Node2D" parent="."]
+position = Vector2( 558, 397 )
+
+[node name="Finish" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1091, 309 )
