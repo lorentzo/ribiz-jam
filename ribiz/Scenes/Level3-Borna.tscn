@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Tiles/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Finish.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/LanternOil/LanternOil.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Monster/Monster.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Monster/Monster2.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 125, -150, 0, 0, 0, 0, -235, 113, 0, 0, 0, 0, -134, 192, 0, 0, 0, 0, 227, -60, 0, 0, 0, 0, 125, -150 )
+}
+
+[node name="Level3" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 256, 180 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( -720897, 16, 0, -786432, 21, 0, -786431, 11, 0, -786430, 15, 0, -786429, 21, 0, -786428, 17, 0, -655363, 16, 0, -655362, 7, 0, -655361, 12, 0, -720896, 14, 0, -720895, 13, 0, -720894, 12, 0, -720893, 14, 0, -720892, 19, 0, -720891, 7, 0, -720890, 7, 0, -720889, 7, 0, -720888, 17, 0, -589827, 28, 0, -589826, 20, 0, -589825, 20, 0, -655360, 20, 0, -655359, 20, 0, -655358, 20, 0, -655357, 20, 0, -655356, 20, 0, -655355, 20, 0, -655354, 20, 0, -655353, 20, 0, -655352, 9, 0, -524291, 19, 0, -524290, 7, 0, -524289, 17, 0, -589824, 14, 0, -589823, 16, 0, -589822, 11, 0, -589821, 14, 0, -589820, 16, 0, -589819, 7, 0, -589818, 17, 0, -589817, 20, 0, -589816, 22, 0, -458753, 13, 0, -524288, 21, 0, -524287, 18, 0, -524286, 13, 0, -524285, 21, 0, -524284, 12, 0, -524282, 9, 0, -524281, 20, 0, -524280, 9, 0, -458747, 13, 0, -458746, 12, 0, -458745, 20, 0, -458744, 13, 0, -458743, 7, 0, -458742, 7, 0, -458741, 7, 0, -458740, 7, 0, -458739, 7, 0, -458738, 11, 0, -393211, 9, 0, -393210, 20, 0, -393209, 20, 0, -393208, 20, 0, -393207, 8, 0, -393206, 8, 0, -393205, 8, 0, -393204, 8, 0, -393203, 8, 0, -393202, 9, 0, -327675, 19, 0, -327674, 17, 0, -327673, 20, 0, -327672, 16, 0, -327671, 7, 0, -327670, 7, 0, -327669, 7, 0, -327668, 7, 0, -327667, 7, 0, -327666, 12, 0, -262138, 22, 0, -262137, 20, 0, -262136, 13, 0, -262135, 23, 0, -262134, 17, 0, -196602, 22, 0, -196601, 20, 0, -196600, 20, 0, -196599, 20, 0, -196598, 9, 0, -131066, 13, 0, -131065, 7, 0, -131064, 7, 0, -131063, 7, 0, -131062, 12, 0 )
+
+[node name="Start" type="Node2D" parent="."]
+position = Vector2( 1615, 630 )
+
+[node name="Finish" parent="." instance=ExtResource( 2 )]
+position = Vector2( 903, -1067 )
+
+[node name="Oil" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1468, 175 )
+
+[node name="Monster" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1351, 109 )
+speed = 300
+
+[node name="Monster2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2443, 748 )
+speed = 300
+
+[node name="Oil2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1487, -644 )
+
+[node name="Monster3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1672, -528 )
+speed = 200
+
+[node name="Path2D" type="Path2D" parent="Monster3"]
+curve = SubResource( 1 )
+
+[node name="Monster4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1288, -824 )
+speed = 200
+
+[node name="Path2D" type="Path2D" parent="Monster4"]
+curve = SubResource( 1 )

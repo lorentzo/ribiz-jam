@@ -3,6 +3,7 @@ extends Node2D
 const STORY_MODE_LEVELS = [
 	"res://Scenes/Level1-Borna.tscn",
 	"res://Scenes/Level2-Borna.tscn",
+	"res://Scenes/Level3-Borna.tscn",
 ]
 
 const THEME_DB_OFFSET: float = -10.0
