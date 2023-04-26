@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Styles/ProgressBarFG.tres" type="StyleBox" id=1]
 [ext_resource path="res://Assets/Styles/ProgressBarBG.tres" type="StyleBox" id=2]
-[ext_resource path="res://Assets/Player/Textures/Lantern.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Player/Textures/lantern_art.png" type="Texture" id=3]
 [ext_resource path="res://Assets/HUD/LanternHealth.gd" type="Script" id=4]
 
 [node name="LampHealthHUD" type="CanvasLayer"]
@@ -14,10 +14,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -42.0
-margin_top = -95.0
-margin_right = 943.0
-margin_bottom = -78.0
+margin_left = -45.0
+margin_top = -88.0
+margin_right = 947.0
+margin_bottom = -71.0
 rect_rotation = -89.9999
 size_flags_vertical = 1
 custom_styles/fg = ExtResource( 1 )
@@ -27,7 +27,8 @@ step = 0.005
 value = 1.0
 percent_visible = false
 
-[node name="LampSprite" type="Sprite" parent="."]
-position = Vector2( 1886, 1026 )
-scale = Vector2( 6.75, 6.75 )
+[node name="LampSprite" type="Sprite" parent="LampHealthProgressBar"]
+position = Vector2( -24, 10.0001 )
+rotation = 1.57079
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
