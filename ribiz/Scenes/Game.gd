@@ -1,9 +1,9 @@
 extends Node2D
 
 const STORY_MODE_LEVELS = [
-	"res://Scenes/Level1.tscn",
-	"res://Scenes/Level2.tscn",
-	"res://Scenes/Level3.tscn",
+	"res://Scenes/Level1-Borna.tscn",
+	"res://Scenes/Level2-Borna.tscn",
+	"res://Scenes/Level3-Borna.tscn",
 ]
 
 const THEME_DB_OFFSET: float = -10.0
@@ -25,6 +25,7 @@ func _load_level():
 	level_finish.connect("level_finished", self, "_on_level_finished")
 	var player_start: Node2D = current_level.get_node("Start")
 	$Player.position = current_level.position + player_start.position
+	$Player.set_lantern_oil($Player.LANTERN_OIL_MAX)
 	self.add_child(current_level)
 	self.move_child(current_level, 0)
 
@@ -44,7 +45,8 @@ func _on_level_finished():
 	current_level.queue_free()
 	
 	if current_level_index == STORY_MODE_LEVELS.size() - 1:
-		# TODO Win
+		# Win!
+		get_tree().change_scene("res://Scenes/Main.tscn")
 		return
 	
 	current_level_index += 1
