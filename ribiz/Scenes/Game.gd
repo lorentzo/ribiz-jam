@@ -1,6 +1,7 @@
 extends Node2D
 
 const STORY_MODE_LEVELS = [
+	"res://Scenes/ProceduralLevel.tscn",
 	"res://Scenes/Level1.tscn",
 	"res://Scenes/Level2.tscn",
 	"res://Scenes/Level3.tscn",
