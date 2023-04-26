@@ -25,7 +25,7 @@ position = Vector2( 618, 354 )
 position = Vector2( 1783, 467 )
 
 [node name="Oil" parent="." instance=ExtResource( 3 )]
-position = Vector2( 683, 402 )
+position = Vector2( 1273, 308 )
 
 [node name="Finish" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2034, 469 )
