@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Fonts/MARYJ___.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/Credits.gd" type="Script" id=2]
+[ext_resource path="res://Assets/MainMenu/button_press.tres" type="StyleBox" id=3]
+[ext_resource path="res://Assets/MainMenu/button_hover.tres" type="StyleBox" id=4]
+[ext_resource path="res://Assets/MainMenu/button.tres" type="StyleBox" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
+outline_size = 2
+outline_color = Color( 0.803922, 0.333333, 0.14902, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -98,16 +103,17 @@ text = "Leo Obadić"
 align = 1
 
 [node name="MainMenuButton" type="Button" parent="."]
-anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -352.0
-margin_top = -104.0
-margin_right = -32.0
+margin_left = 32.0
+margin_top = -122.0
+margin_right = 352.0
 margin_bottom = -32.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 5 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/normal = ExtResource( 5 )
 text = "Main Menu"
 script = ExtResource( 2 )
 

@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/MARYJ___.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/Fonts/font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/MainMenu/button.tres" type="StyleBox" id=4]
+[ext_resource path="res://Assets/MainMenu/button_hover.tres" type="StyleBox" id=5]
+[ext_resource path="res://Assets/MainMenu/button_press.tres" type="StyleBox" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -28,32 +31,41 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = -57.0
+margin_top = -42.0
 margin_right = 160.0
-margin_bottom = 191.0
-custom_constants/separation = 16
+margin_bottom = 293.0
+custom_constants/separation = 32
 
 [node name="StartGameStoryButton" type="Button" parent="VBoxContainer"]
 margin_right = 320.0
-margin_bottom = 72.0
+margin_bottom = 90.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/normal = ExtResource( 4 )
 text = "Start"
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
-margin_top = 88.0
+margin_top = 122.0
 margin_right = 320.0
-margin_bottom = 160.0
+margin_bottom = 212.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/normal = ExtResource( 4 )
 text = "Credits"
 
 [node name="ExitGameButton" type="Button" parent="VBoxContainer"]
-margin_top = 176.0
+margin_top = 244.0
 margin_right = 320.0
-margin_bottom = 248.0
+margin_bottom = 335.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/normal = ExtResource( 4 )
 text = "Exit"
 
 [node name="TitleLabel" type="Label" parent="."]
