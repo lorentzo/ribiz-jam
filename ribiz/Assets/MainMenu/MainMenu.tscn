@@ -71,5 +71,5 @@ text = "The Darkest Hour"
 align = 1
 
 [connection signal="pressed" from="VBoxContainer/StartGameStoryButton" to="." method="_on_StartGameStoryButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_StartGameStoryButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitGameButton" to="." method="_on_ExitGameButton_pressed"]
