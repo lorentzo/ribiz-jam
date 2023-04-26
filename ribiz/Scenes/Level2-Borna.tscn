@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Tiles/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Assets/Monster/Monster.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/LanternOil/LanternOil.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Finish.tscn" type="PackedScene" id=4]
+
+[node name="Level2" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 256, 180 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( -393211, 15, 0, -393210, 7, 0, -393209, 7, 0, -393208, 7, 0, -393207, 7, 0, -393206, 25, 0, -393205, 17, 0, -327675, 9, 0, -327674, 8, 0, -327673, 14, 0, -327672, 8, 0, -327671, 14, 0, -327670, 8, 0, -327669, 9, 0, -262139, 9, 0, -262138, 14, 0, -262137, 15, 0, -262136, 7, 0, -262135, 7, 0, -262134, 7, 0, -262133, 12, 0, -196607, 16, 0, -196606, 7, 0, -196605, 7, 0, -196604, 11, 0, -196603, 9, 0, -196602, 8, 0, -196601, 9, 0, -131071, 9, 0, -131070, 20, 0, -131069, 20, 0, -131068, 19, 0, -131067, 18, 0, -131066, 14, 0, -131065, 9, 0, -65535, 27, 0, -65534, 20, 0, -65533, 20, 0, -65532, 14, 0, -65531, 8, 0, -65530, 14, 0, -65529, 9, 0, 1, 9, 0, 2, 20, 0, 3, 20, 0, 4, 15, 0, 5, 21, 0, 6, 21, 0, 7, 12, 0, 65537, 13, 0, 65538, 7, 0, 65539, 7, 0, 65540, 12, 0 )
+
+[node name="Start" type="Node2D" parent="."]
+position = Vector2( 310, 182 )
+
+[node name="Monster" parent="." instance=ExtResource( 2 )]
+position = Vector2( 618, 354 )
+
+[node name="Monster2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1783, 467 )
+
+[node name="Oil" parent="." instance=ExtResource( 3 )]
+position = Vector2( 683, 402 )
+
+[node name="Finish" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2034, 469 )
