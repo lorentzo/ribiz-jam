@@ -5,3 +5,7 @@
 [node name="Lore" type="Node2D"]
 
 [node name="Lore" parent="." instance=ExtResource( 1 )]
+margin_left = 979.0
+margin_top = 492.0
+margin_right = 979.0
+margin_bottom = 492.0
