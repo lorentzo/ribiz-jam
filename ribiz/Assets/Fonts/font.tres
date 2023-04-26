@@ -1,0 +1,9 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/MARYJ___.ttf" type="DynamicFontData" id=1]
+
+[resource]
+size = 96
+outline_size = 4
+outline_color = Color( 0.803922, 0.333333, 0.14902, 1 )
+font_data = ExtResource( 1 )
