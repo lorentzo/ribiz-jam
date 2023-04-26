@@ -15,13 +15,14 @@ font_data = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 426.0
-margin_top = 83.0
-margin_right = 1620.0
-margin_bottom = 926.0
+anchor_top = 0.5
+anchor_bottom = 0.748
+margin_left = 329.0
+margin_top = 200.0
+margin_right = 1600.0
+margin_bottom = 949.0
 custom_fonts/font = SubResource( 1 )
-text = "
-A legends says that deep down in this ruins a secret can be found. A secret such 
+text = "A legends says that deep down in this ruins a secret can be found. A secret such 
 worthy that told by many. But tried by few. A risky venture with a terrible curse 
 for the ones who try. A curse trapping them forever, never letting them to return.
 Becoming something dark and vile. A loss of light, endless darkness. A creature of 
@@ -38,9 +39,9 @@ oil and there is no much time before everything becomes completely dark. You
 must leave the place now. Or this might be the darkest hour of your life..."
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 434.0
+margin_left = 423.0
 margin_top = 981.0
-margin_right = 1456.0
+margin_right = 1445.0
 margin_bottom = 1038.0
 custom_fonts/font = SubResource( 2 )
 text = "<Press any key to continue>"
