@@ -6,16 +6,17 @@ signal player_scent_trail
 signal lantern_oil_changed(lantern_oil)
 signal lantern_extinguished
 
-const RUNNING_MULTIPLIER = 2
+const RUNNING_MULTIPLIER = 5
+const RUNNING_SPEED_MULTIPLIER = 2
 const LANTERN_RADIUS_SCALE = 0.666
 const LANTERN_RADIUS_MIN: float = 200.0
-const LANTERN_ENERGY_GAME_OVER: float = 0.1
+const LANTERN_ENERGY_GAME_OVER: float = 0.4
 const LANTERN_OIL_MAX: float = 100.0
 const LANTERN_OIL_PER_SECOND: float = 1.0
 const MIN_SCENT_DISTANCE: float = 10.0
 
 var walking_speed: float = 100
-var running_speed: float = RUNNING_MULTIPLIER * walking_speed
+var running_speed: float = RUNNING_SPEED_MULTIPLIER * walking_speed
 var lantern_oil = LANTERN_OIL_MAX
 var lantern_extinguished: bool = false
 var scent_last_position: Vector2 = Vector2.ZERO
@@ -86,11 +87,8 @@ func _update_player(delta: float, running: bool):
 		if collision.collider.is_in_group("monster"):
 			lantern_oil = 0
 
-func _update_lantern(delta: float, running: bool):
-	var lantern_delta = LANTERN_OIL_PER_SECOND * delta
-	if running:
-		lantern_delta *= RUNNING_MULTIPLIER
-	lantern_oil = max(lantern_oil - lantern_delta, 0)
+func set_lantern_oil(value):
+	lantern_oil = value
 	var lantern_oil_ratio = lantern_oil / LANTERN_OIL_MAX
 	var lantern_light_size = min(lantern_light.texture.get_width() * lantern_light.scale.x, lantern_light.texture.get_height() * lantern_light.scale.y)
 	if lantern_light_size > LANTERN_RADIUS_MIN:
@@ -99,7 +97,14 @@ func _update_lantern(delta: float, running: bool):
 	lantern_light.energy = sqrt(lantern_oil_ratio)
 	emit_signal("lantern_oil_changed", lantern_oil_ratio)
 
+func _update_lantern(delta: float, running: bool):
+	var lantern_delta = LANTERN_OIL_PER_SECOND * delta
+	if running:
+		lantern_delta *= RUNNING_MULTIPLIER
+	set_lantern_oil(max(lantern_oil - lantern_delta, 0))
+
 func _update_game_over():
 	if not lantern_extinguished and lantern_light.energy <= LANTERN_ENERGY_GAME_OVER:
 		emit_signal("lantern_extinguished")
 		lantern_extinguished = true
+		$Player.stop()

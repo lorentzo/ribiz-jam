@@ -6,7 +6,7 @@ const CHASE_STOP_THRESHOLD = 300
 const PATROL_START_THRESHOLD = 10
 
 export var speed = 50
-var chase_speed = 2.5 * speed
+var chase_speed
 
 enum MonsterState {
 	PATROL,
@@ -31,6 +31,7 @@ onready var return_scent_timer = $ReturnScentTimer
 
 # NOTE: A monster will follow a specified path if there is a Path2D child node
 func _ready():
+	chase_speed = 2.5 * speed
 	add_to_group("monster")
 	return_scent_timer.connect("timeout", self, "_add_return_scent")
 	call_deferred("_set_up_path")
