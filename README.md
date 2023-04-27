@@ -22,4 +22,8 @@ Play it on itch.io: https://lovbos.itch.io/the-darkest-hour
 ![](repo_img/8.png)
 ![](repo_img/9.png)
 
+Technologies used:
+* Blender (3.5 - https://www.blender.org/download/releases/3-5/)
+* Godot (3.5 - https://godotengine.org/download/3.x/linux/)
+
 Codename: `ribiz-jam` (word play. In Croatian "jam" phonetically sounds like word "džem" meaning "marmalade". "Ribiz" is fruit (currant) from which marmelade is often being made.)
