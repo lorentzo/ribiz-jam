@@ -1,4 +1,4 @@
-# The Darkest hour
+# The Darkest Hour
 
 Made for Gamedev.js game jam - April 2023: https://itch.io/jam/gamedevjs-2023
 
