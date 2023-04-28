@@ -90,10 +90,11 @@ func _update_player(delta: float, running: bool):
 func set_lantern_oil(value):
 	lantern_oil = value
 	var lantern_oil_ratio = lantern_oil / LANTERN_OIL_MAX
-	var lantern_light_size = min(lantern_light.texture.get_width() * lantern_light.scale.x, lantern_light.texture.get_height() * lantern_light.scale.y)
-	if lantern_light_size > LANTERN_RADIUS_MIN:
-		lantern_light.scale.x = lantern_oil_ratio * LANTERN_RADIUS_SCALE
-		lantern_light.scale.y = lantern_oil_ratio * LANTERN_RADIUS_SCALE
+	var scale_new = lantern_oil_ratio * LANTERN_RADIUS_SCALE
+	var lantern_light_size_new = min(lantern_light.texture.get_width() * scale_new, lantern_light.texture.get_height() * scale_new)
+	if lantern_light_size_new > LANTERN_RADIUS_MIN:
+		lantern_light.scale.x = scale_new
+		lantern_light.scale.y = scale_new
 	lantern_light.energy = sqrt(lantern_oil_ratio)
 	emit_signal("lantern_oil_changed", lantern_oil_ratio)
 
