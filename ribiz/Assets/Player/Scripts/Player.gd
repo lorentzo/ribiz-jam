@@ -52,14 +52,14 @@ func _physics_process(delta):
 		return
 	
 	var running = Input.is_key_pressed(KEY_SHIFT)
-	_update_player(delta, running)
-	_update_lantern(delta, running)
+	var velocity = _update_player(delta, running)
+	_update_lantern(delta, running, velocity)
 	_update_game_over()
 
-func _update_player(delta: float, running: bool):
+func _update_player(delta: float, running: bool) -> Vector2:
 	var speed = (running_speed if running else walking_speed)
 
-	var velocity = Vector2()
+	var velocity = Vector2.ZERO
 
 	if Input.is_action_pressed("walk_right"):
 		velocity.x = 1
@@ -87,6 +87,8 @@ func _update_player(delta: float, running: bool):
 		if collision.collider.is_in_group("monster"):
 			lantern_oil = 0
 
+	return velocity
+
 func set_lantern_oil(value):
 	lantern_oil = value
 	var lantern_oil_ratio = lantern_oil / LANTERN_OIL_MAX
@@ -97,9 +99,9 @@ func set_lantern_oil(value):
 	lantern_light.energy = sqrt(lantern_oil_ratio)
 	emit_signal("lantern_oil_changed", lantern_oil_ratio)
 
-func _update_lantern(delta: float, running: bool):
+func _update_lantern(delta: float, running: bool, velocity: Vector2):
 	var lantern_delta = LANTERN_OIL_PER_SECOND * delta
-	if running:
+	if velocity != Vector2.ZERO and running:
 		lantern_delta *= RUNNING_MULTIPLIER
 	set_lantern_oil(max(lantern_oil - lantern_delta, 0))
 
