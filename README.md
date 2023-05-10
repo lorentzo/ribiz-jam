@@ -16,6 +16,16 @@ Game jam entry: https://itch.io/jam/gamedevjs-2023/rate/2037103
 
 Play it on itch.io: https://lovbos.itch.io/the-darkest-hour
 
+### WINNERS! 🥳
+
+We have finished among the [overall winners (top 10)](https://gamedevjs.com/competitions/gamedev-js-jam-2023-winners-announced/) of the game jam!
+
+<a href="https://gamedevjs.com/competitions/gamedev-js-jam-2023-winners-announced/">
+  <img src="repo_img/gamedevjs-jam-2023-winners-overall.png" width="640">
+</a>
+
+---
+
 <table>
   <tr>
     <td colspan="2"><img src="repo_img/1.png" width="720"></td>
